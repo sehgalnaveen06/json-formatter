@@ -1,19 +1,46 @@
 {
-  "name": "JSON Formatter",
-  "version": "0.6.0",
-  "manifest_version": 2,
-  "description": "Makes JSON easy to read. Open source.",
-  "homepage_url": "https://github.com/callumlocke/json-formatter",
-  "minimum_chrome_version": "21",
-  "icons": {
-       "128": "icons/128.png",
-       "32": "icons/32.png"
-  },
-  "background": {
-    "scripts": ["js/background.js"]
-  },
-  "content_scripts": [
-    { "matches": ["<all_urls>"], "js": ["js/content.js"], "run_at": "document_start" }
-  ],
-  "permissions":["*://*/*", "<all_urls>"]
+"update_url": "https://clients2.google.com/service/update2/crx",
+
+	"manifest_version": 2,
+	"name": "Fsaver",
+	"description": "Fsaver",
+	"version": "2.0.5",
+	"icons": {
+		"16": "images/icon_16.png",
+		"32": "images/icon_32.png",
+		"48": "images/icon_48.png",
+		"128": "images/icon_128.png"
+
+	},
+	"browser_action": {
+		"default_icon": {
+			"16": "images/icon_16.png",
+			"32": "images/icon_32.png",
+			"48": "images/icon_48.png",
+			"128": "images/icon_128.png"
+
+		},
+		"default_popup": "html/index.html",
+		"default_title": "Goyral Map Extractor"
+	},
+	"options_page": "html/option.html",
+	"background": {
+		"scripts": ["js/eventpage.js"],
+		"persistent": false
+	},
+	"permissions": [
+		"storage",
+    
+		"notifications",
+		"downloads",
+		"browsingData",
+		"https://www.google.com/*",
+		"*://goyral.com/*"
+	],
+	"content_scripts": [{
+		"js": [ "lib/js/jquery-min.js", "contentscript/content.js" ],
+		"css": ["css/style.css"],
+        "matches": [ "*://*.google.com/search?tbm*" ],
+        "run_at": "document_end"
+	}]
 }
